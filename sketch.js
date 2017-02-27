@@ -1,5 +1,6 @@
 var ICON_PATH = "http://i.imgur.com/djop4PJ.png";
-var ICON_WAIT_PATH = "http://i.imgur.com/E9HQv3q.png";
+var ICON_WAIT_PATH = "https://raw.githubusercontent.com/duthienkt/TankZorJS/master/data/icon_wait.png";
+var N_GROUND = 106;
 
 function Animation(p, imgs, elapseTime, _loop = true) {
     this.length = imgs.length;
@@ -58,6 +59,9 @@ function Animation(p, imgs, elapseTime, _loop = true) {
 
 
 
+
+
+
 var TankZor = function(p) {
     var animationCache = {};
     var mMap = {};
@@ -65,6 +69,8 @@ var TankZor = function(p) {
     var lastTime;
     var currentTime;
     var deltaTime = 0;
+    var activityStack = [];
+    var currentActivity;
     p.preload = function() {
         this.createAnimation(ICON_WAIT_PATH, 6, 100, true, function(a) {
             test = a;
@@ -72,9 +78,10 @@ var TankZor = function(p) {
     }
 
     p.setup = function() {
-        p.createCanvas(700, 410);
+        p.createCanvas(400, 410);
         currentTime = p.millis();
         deltaTime = 0;
+
     };
 
     p.draw = function() {
@@ -108,6 +115,11 @@ var TankZor = function(p) {
         }
         return imgs;
     }
+
+    this.startActivity = function(act) {
+
+    }
+
 };
 
 var myp5 = new p5(TankZor, "gameContainer");
